@@ -1,0 +1,74 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block title %}Delete Task | To Do List{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/delete.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>🗑️ Delete Task</h1>
+  <p class="subtitle">Select a task to delete from your list</p>
+
+  <!-- Show success message -->
+  {% if success %}
+  <div class="message-area success">{{ success }}</div>
+  {% endif %}
+
+  <!-- Show error message -->
+  {% if error %}
+  <div class="message-area error">{{ error }}</div>
+  {% endif %}
+
+  {% if tasks %}
+    <div class="tasks-list">
+      <form id="deleteTaskForm" method="POST" action="{% url 'delete_page' %}">
+        {% csrf_token %}
+        
+        <div class="table-responsive">
+          <table class="tasks-table">
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>ID</th>
+                <th>Task Title</th>
+                <th>Description</th>
+                <th>Created Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for task in tasks %}
+              <tr>
+                <td class="checkbox-cell">
+                  <input type="checkbox" name="task_ids" value="{{ task.id }}" class="task-checkbox">
+                </td>
+                <td>{{ task.id }}</td>
+                <td><strong>{{ task.title }}</strong></td>
+                <td>{{ task.description|truncatechars:50|default:"-" }}</td>
+                <td>{{ task.created_at|date:"Y-m-d H:i" }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="deleteBtn" class="btn btn-delete" disabled>🗑️ Delete Selected</button>
+          <a href="{% url 'index' %}" class="btn btn-cancel">❌ Cancel</a>
+        </div>
+      </form>
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>📭 No tasks available to delete.</p>
+      <a href="{% url 'add_page' %}" class="btn btn-add">➕ Add Your First Task</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/delete.js' %}"></script>
+{% endblock %}

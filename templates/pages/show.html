@@ -1,0 +1,59 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block title %}Show Tasks | To Do List{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/show.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>👁️ All Tasks</h1>
+  <p class="subtitle">View all your tasks</p>
+
+  {% if tasks %}
+    <div class="tasks-list">
+      <div class="task-stats">
+        <span>Total Tasks: <strong>{{ tasks|length }}</strong></span>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="tasks-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Created Date</th>
+             </tr>
+          </thead>
+          <tbody>
+            {% for task in tasks %}
+            <tr>
+              <td>{{ task.id }}</td>
+              <td><strong>{{ task.title }}</strong></td>
+              <td>{{ task.description|default:"-" }}</td>
+              <td>{{ task.created_at|date:"Y-m-d H:i" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>📭 No tasks available.</p>
+      <a href="{% url 'add_page' %}" class="btn btn-add">➕ Add Your First Task</a>
+    </div>
+  {% endif %}
+
+  <div class="form-actions">
+    <a href="{% url 'index' %}" class="btn btn-back">⬅ Back to Home</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/show.js' %}"></script>
+{% endblock %}

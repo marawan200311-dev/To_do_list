@@ -1,0 +1,95 @@
+/* index.css - Specific styles for home page */
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.btn {
+  display: block;
+  padding: 15px 25px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-add {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-add:hover {
+  background-color: #218838;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-show {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.btn-show:hover {
+  background-color: #138496;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-update {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.btn-update:hover {
+  background-color: #e0a800;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 600px) {
+  .buttons-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+}

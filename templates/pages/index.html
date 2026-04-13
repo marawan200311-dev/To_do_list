@@ -1,0 +1,26 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block title %}Home | To Do List{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>📋 To Do List</h1>
+  <p class="subtitle">Choose an action</p>
+
+  <div class="buttons-grid">
+    <a href="{% url 'add_page' %}" class="btn btn-add">➕ ADD</a>
+    <a href="{% url 'delete_page' %}" class="btn btn-delete">🗑️ DELETE</a>
+    <a href="{% url 'show_page' %}" class="btn btn-show">👁️ SHOW</a>
+    <a href="{% url 'update_page' %}" class="btn btn-update">✏️ UPDATE</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
